@@ -13,10 +13,13 @@ const App = () => {
     newNotes[index] = e.target.value;
     setNotes(newNotes);
 
-    if (e.target.value.includes('<> ')) {
+    if (e.target.value.includes('<>')) {
       setSuggestions(notes.slice(0, -1));
     } else {
       setSuggestions([]);
+      if (newNotes[index].includes('<> ')) {
+        newNotes[index] = newNotes[index].replace('<>', '');
+      }
     }
   };
 
@@ -25,15 +28,6 @@ const App = () => {
     newNotes[newNotes.length - 1] += e.target.value;
     setNotes(newNotes);
     setSuggestions([]);
-    if (newNotes[index].includes('<>')) {
-      setSuggestions(notes.slice(0, -1));
-    } else {
-      setSuggestions([]);
-      if (newNotes[index].includes('<>')) {
-        newNotes[index] = newNotes[index].replace('<>', '');
-        noteRefs.current[index].current.innerHTML = newNotes[index];
-      }
-    }
   };
 
   return (
@@ -64,5 +58,3 @@ const App = () => {
 };
 
 export default App;
-
-
