@@ -1,57 +1,64 @@
 import React, { useState } from 'react';
 
 const App = () => {
-  const [notes, setNotes] = useState([]);
+  const [items, setItems] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
+  const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(null);
 
-  const handleAddNote = () => {
-    setNotes([...notes, '']);
+  const handleAddItem = () => {
+    setItems([...items, '']);
   };
 
   const handleInputChange = (e, index) => {
-    const newNotes = [...notes];
-    newNotes[index] = e.target.value;
-    setNotes(newNotes);
+    const newItems = [...items];
+    newItems[index] = e.target.value;
+    setItems(newItems);
 
     if (e.target.value.includes('<>')) {
-      setSuggestions(notes.slice(0, -1));
+      setSuggestions(newItems.slice(0, index));
+      setSelectedSuggestionIndex(index);
     } else {
       setSuggestions([]);
-      if (newNotes[index].includes('<> ')) {
-        newNotes[index] = newNotes[index].replace('<>', '');
-      }
+      setSelectedSuggestionIndex(null);
+    }
+
+    if (e.target.value.endsWith('<>')) {
+      newItems[index] = newItems[index].slice(0, -2);
+      setItems(newItems);
     }
   };
 
-  const handleSuggestionChange = (e) => {
-    const newNotes = [...notes];
-    newNotes[newNotes.length - 1] += e.target.value;
-    setNotes(newNotes);
+  const handleSuggestionClick = (suggestion) => {
+    const newItems = [...items];
+    newItems[selectedSuggestionIndex] = `${newItems[selectedSuggestionIndex]}${suggestion}`;
+    setItems(newItems);
     setSuggestions([]);
+    setSelectedSuggestionIndex(null);
   };
 
   return (
-    <div style={{ backgroundColor: 'darkblue', padding: '20px' }}>
-      <button onClick={handleAddNote}>Create new note</button>
-      {notes.map((note, index) => (
+    <div style={{ backgroundColor: 'darkblue', color: 'white', padding: '20px' }}>
+      <h1>Welcome to the assignment</h1>
+      <button onClick={handleAddItem}>Add Item</button>
+      {items.map((item, index) => (
         <div key={index}>
           <hr />
-          <textarea
-            value={note}
+          <input
+            type="text"
+            value={item}
             onChange={(e) => handleInputChange(e, index)}
-            style={{ backgroundColor: 'cyan' }}
+            style={{ color: index === selectedSuggestionIndex ? 'red' : 'black' }}
           />
         </div>
       ))}
       {suggestions.length > 0 && (
-        <select onChange={handleSuggestionChange}>
-          <option value="">Select a suggestion</option>
+        <ul>
           {suggestions.map((suggestion, index) => (
-            <option key={index} value={suggestion}>
+            <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
               {suggestion}
-            </option>
+            </li>
           ))}
-        </select>
+        </ul>
       )}
     </div>
   );
