@@ -2,8 +2,8 @@
     list-style-type: none;
     padding: 0;
     margin: -51px 64px;
-    border: 1px solid #ccc;
-    background-color: #fff;
+    border: 1px solid #230441;
+    background-color: #4b4251;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: absolute;
     width: 18%;
@@ -12,8 +12,9 @@
 .suggestion-list li {
     padding: 8px;
     cursor: pointer;
+    color: aliceblue;
 }
 
 .suggestion-list li:hover {
-    background-color: #f2f2f2;
+    background-color: #688898;
 }
