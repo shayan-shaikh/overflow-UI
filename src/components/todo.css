@@ -1,0 +1,19 @@
+.suggestion-list {
+    list-style-type: none;
+    padding: 0;
+    margin: -51px 64px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    width: 18%;
+}
+
+.suggestion-list li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestion-list li:hover {
+    background-color: #f2f2f2;
+}
