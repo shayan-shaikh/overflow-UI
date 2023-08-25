@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../components/todo.css";
 
-export default function TodoInput(props) {
+function InputElem(props) {
     const [inputText, setInputText] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
@@ -61,3 +61,5 @@ export default function TodoInput(props) {
         </div>
     );
 }
+
+export default InputElem;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./App.css"
-import TodoInput from './components/TodoInput'
-import Todolist from './components/TodoList';
+import InputElem from './components/InputElem'
+import Notes from './components/Notes';
 
 
 function App() {
@@ -20,13 +20,13 @@ function App() {
 
     <div className="main-container">
       <div className="center-container">
-        <TodoInput addList={addList} listTodo={listTodo} />
+        <InputElem addList={addList} listTodo={listTodo} />
 
-        <h1 className="app-heading">Todo List</h1>
+        <h1 className="app-heading">Idea-flow : Todo List</h1>
         <hr />
         {listTodo.map((listItem, i) => {
           return (
-            <Todolist key={i} index={i} item={listItem} deleteItem={deleteListItem} />
+            <Notes key={i} index={i} item={listItem} deleteItem={deleteListItem} />
           )
         })}
       </div>
