@@ -42,7 +42,8 @@ function InputElem(props) {
                     {suggestions.map((suggestionItem, index) => (
                         <li
                             key={index}
-                            onClick={() => handleSuggestionClick(suggestionItem)} updatedText={suggestions}
+                            onClick={() => handleSuggestionClick(suggestionItem)}
+                            updatedText={suggestions}
                         >
                             {suggestionItem}
                         </li>

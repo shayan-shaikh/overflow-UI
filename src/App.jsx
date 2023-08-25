@@ -22,7 +22,7 @@ function App() {
       <div className="center-container">
         <InputElem addList={addList} listTodo={listTodo} />
 
-        <h1 className="app-heading">Idea-flow : Todo List</h1>
+        <h1 className="app-heading">Idea-flow : Notes</h1>
         <hr />
         {listTodo.map((listItem, i) => {
           return (
